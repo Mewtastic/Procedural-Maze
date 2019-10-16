@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Tutorial.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Instances/Board.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Instances/MazeWalls.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Instances/Sun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Instances/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Instances/Collect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Instances/GameFin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Instances/EnergyMarker.tscn" type="PackedScene" id=8]
+[ext_resource path="res://default_env.tres" type="Environment" id=9]
+
+[node name="Tutorial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Board" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 )
+
+[node name="GridMap" parent="." instance=ExtResource( 3 )]
+data = {
+"cells": PoolIntArray( 4, 0, 1048580, 5, 0, 1048580, 65530, 0, 7, 65533, 0, 1048579, 65534, 0, 1610612743, 4, 1, 1048580, 5, 1, 1048580, 65530, 1, 7, 65531, 1, 3, 65532, 1, 3, 65533, 1, 655368, 65534, 1, 7, 4, 2, 655361, 5, 2, 5, 65530, 2, 1441796, 65531, 2, 655365, 65532, 2, 1441799, 65533, 2, -535429112, 65534, 2, 7, 0, 3, 655364, 1, 3, 537526276, 2, 3, 537526276, 3, 3, 655364, 5, 3, 655372, 65530, 3, 1441796, 65531, 3, 1441797, 65532, 3, 1048583, 65533, 3, 1048583, 65534, 3, 655364, 65535, 3, 655364, 0, 4, 1441801, 1, 4, 1441801, 2, 4, 1441801, 3, 4, 1075183625, 5, 4, 1048589, 65530, 4, 11, 65531, 4, 1441801, 65532, 4, 1441801, 65533, 4, 1441801, 65534, 4, 1441801, 65535, 4, 1441801, 0, 5, 1048583, 1, 5, 1048583, 2, 5, 1048583, 3, 5, 1048583, 4, 5, 1048583, 5, 5, 655372, 65530, 5, 1048583, 65531, 5, 537919495, 65532, 5, 1048583, 65533, 5, 1048583, 65534, 5, 1048583, 65535, 5, 1048583, 0, 65530, 1441799, 1, 65530, 1441799, 2, 65530, 1441799, 3, 65530, 1441799, 4, 65530, 1441800, 5, 65530, 1048582, 65530, 65530, 1048578, 65531, 65530, 655363, 65532, 65530, 655363, 65533, 65530, 1048581, 65534, 65530, 8, 65535, 65530, 1441799, 4, 65531, 1048580, 5, 65531, 1048580, 65530, 65531, 7, 65533, 65531, 1048579, 65534, 65531, 7, 4, 65532, 1048580, 5, 65532, 1048580, 65530, 65532, 7, 65533, 65532, 537919491, 65534, 65532, 7, 4, 65533, 1048580, 5, 65533, 537919492, 65530, 65533, 7, 65533, 65533, 1048579, 65534, 65533, 7, 4, 65534, 1048580, 5, 65534, 1048580, 65530, 65534, 7, 65533, 65534, 1048579, 65534, 65534, 7, 4, 65535, 1048580, 5, 65535, 1048580, 65530, 65535, 7, 65533, 65535, -535822333, 65534, 65535, 7 )
+}
+
+[node name="Sun" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0935842, -0.667165, 0.739008, 0.127686, 0.744178, 0.655664, -0.98739, 0.0330012, 0.154831, 5.08078, 23.7508, -18.1864 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, -0.766044, -22, 1.5, -22 )
+
+[node name="Collect" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.853553, -0.146447, 0.5, 0.5, 0.5, -0.707107, -0.146447, 0.853553, 0.5, 0, 2, 6 )
+particles_position = Vector3( 4, 7, 6 )
+
+[node name="Collect2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.853553, -0.146447, 0.5, 0.5, 0.5, -0.707107, -0.146447, 0.853553, 0.5, 7, 2, 6 )
+particles_position = Vector3( 7, 7, 6 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="GameFin" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 42, 0 )
+
+[node name="SpotLight" type="SpotLight" parent="Camera"]
+visible = false
+spot_range = 78.4668
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -65.0
+margin_right = 242.0
+text = "WASD to move
+SHIFT to run
+RIGHT mouse button to move camera
+Collect two StarCubes to win"
+
+[node name="EnergyMarker" parent="." instance=ExtResource( 8 )]
+visible = false
+
+[node name="world" type="WorldEnvironment" parent="."]
+environment = ExtResource( 9 )
+[connection signal="maze_complete" from="." to="Player" method="_on_Tutorial_maze_complete"]
+[connection signal="maze_complete" from="." to="GameFin" method="_on_Tutorial_maze_complete"]
+[connection signal="green" from="Player" to="." method="_on_Player_green"]
+[connection signal="body_entered" from="Collect" to="." method="_on_Collect_body_entered"]
+[connection signal="body_entered" from="Collect2" to="." method="_on_Collect_body_entered"]
+[connection signal="body_entered" from="Collect2" to="." method="_on_Collect2_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="home" from="GameFin" to="." method="_on_GameFin_home"]
+[connection signal="retry" from="GameFin" to="." method="_on_GameFin_retry"]

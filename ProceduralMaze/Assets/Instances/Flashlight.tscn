@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/materials/Flashlight_material.tres" type="Material" id=1]
+
+[sub_resource type="CylinderMesh" id=1]
+material = ExtResource( 1 )
+
+[sub_resource type="SphereMesh" id=2]
+material = ExtResource( 1 )
+is_hemisphere = true
+
+[node name="Flashlight" type="MeshInstance"]
+transform = Transform( -0.1, -2.62268e-08, 3.82137e-16, 0, -1.31134e-08, -0.1, 8.74228e-09, -0.3, 4.37114e-09, -0.75, -0.5, -0.75 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="LightHolder" type="MeshInstance" parent="."]
+transform = Transform( -1.4, -1.74846e-08, 2.96462e-21, 1.22392e-07, -0.2, -9.1794e-07, 8.02488e-14, -1.31134e-07, 1.4, 0, 1.27559, 9.53674e-07 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="SpotLight" type="SpotLight" parent="LightHolder"]
+transform = Transform( 7.14286, 1.87334e-06, -2.0815e-07, 4.37113e-06, 2.84124e-05, 16.6667, 1.87335e-06, -7.14286, -3.12227e-07, 0, 0, 0 )
+spot_range = 8.01791

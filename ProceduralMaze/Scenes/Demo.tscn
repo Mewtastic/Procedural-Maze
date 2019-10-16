@@ -1,0 +1,120 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/Demo.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Instances/Board.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Instances/MazeWalls.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Instances/Collect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Instances/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Instances/EnergyMarker.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Instances/GameFin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Instances/Pause Screen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Music & SoundEffects/renaissance_of_greed.ogg" type="AudioStream" id=9]
+[ext_resource path="res://default_env.tres" type="Environment" id=10]
+[ext_resource path="res://Assets/Instances/Sun.tscn" type="PackedScene" id=11]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+const WIN_CONDITION = 3
+
+var collected = 0
+
+signal maze_complete()
+
+func _process(delta):
+	if collected >= WIN_CONDITION:
+		collected = 0
+		$Timer.start()
+
+func _on_Collect_body_entered(body):
+	collected += 1
+
+func _on_Collect2_body_entered(body):
+	collected += 1
+
+func _on_Collect3_body_entered(body):
+	collected += 1
+
+func _on_Timer_timeout():
+	emit_signal(\"maze_complete\")
+	
+func _on_GameFin_retry():
+	get_tree().reload_current_scene()
+
+func _on_GameFin_home():
+	get_tree().change_scene(\"res://Scenes/3D title screen.tscn\")
+"
+
+[node name="Demo" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="RequestHandler" type="Node" parent="."]
+editor/display_folded = true
+script = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="RequestHandler"]
+wait_time = 4.0
+
+[node name="Board" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+
+[node name="GridMap" parent="." instance=ExtResource( 3 )]
+data = {
+"cells": PoolIntArray(  )
+}
+
+[node name="Camera" type="Camera" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 49.7007, 0 )
+
+[node name="SpotLight" type="SpotLight" parent="Camera"]
+visible = false
+spot_range = 63.9978
+
+[node name="Pickups container" type="Spatial" parent="."]
+editor/display_folded = true
+
+[node name="Collect" parent="Pickups container" instance=ExtResource( 4 )]
+transform = Transform( 0.853553, -0.146447, 0.5, 0.5, 0.5, -0.707107, -0.146447, 0.853553, 0.5, -22, 2, 22 )
+particles_position = Vector3( -22, 7, 22 )
+
+[node name="Collect2" parent="Pickups container" instance=ExtResource( 4 )]
+transform = Transform( 0.853553, -0.146447, 0.5, 0.5, 0.5, -0.707107, -0.146447, 0.853553, 0.5, -22, 2, -22 )
+particles_position = Vector3( -22, 7, -22 )
+
+[node name="Collect3" parent="Pickups container" instance=ExtResource( 4 )]
+transform = Transform( 0.853553, -0.146447, 0.5, 0.5, 0.5, -0.707107, -0.146447, 0.853553, 0.5, 22, 2, 22 )
+particles_position = Vector3( 22, 7, 22 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 22, 1.5, -22 )
+
+[node name="EnergyMarker" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="GameFin" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="Pause Screen" parent="." instance=ExtResource( 8 )]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+pitch_scale = 0.8
+autoplay = true
+
+[node name="world" type="WorldEnvironment" parent="."]
+environment = ExtResource( 10 )
+
+[node name="Sun" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.991789, 0.0910229, 0.0898331, 0.127686, 0.744178, 0.655664, -0.00717144, 0.66175, -0.74969, 5.08078, 23.7508, -18.1864 )
+[connection signal="maze_complete" from="RequestHandler" to="Player" method="_on_RequestHandler_maze_complete"]
+[connection signal="maze_complete" from="RequestHandler" to="." method="_on_RequestHandler_maze_complete"]
+[connection signal="maze_complete" from="RequestHandler" to="GameFin" method="_on_RequestHandler_maze_complete"]
+[connection signal="timeout" from="RequestHandler/Timer" to="RequestHandler" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Pickups container/Collect" to="RequestHandler" method="_on_Collect_body_entered"]
+[connection signal="body_entered" from="Pickups container/Collect2" to="RequestHandler" method="_on_Collect2_body_entered"]
+[connection signal="body_entered" from="Pickups container/Collect3" to="RequestHandler" method="_on_Collect3_body_entered"]
+[connection signal="green" from="Player" to="." method="_on_Player_green"]
+[connection signal="home" from="GameFin" to="RequestHandler" method="_on_GameFin_home"]
+[connection signal="retry" from="GameFin" to="RequestHandler" method="_on_GameFin_retry"]

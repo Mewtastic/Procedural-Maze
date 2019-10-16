@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/materials/ground.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Instances/Border.tscn" type="PackedScene" id=2]
+
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 1 )
+size = Vector2( 96, 96 )
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( 48, 0, 48, -48, 0, 48, 48, 0, -48, -48, 0, -48 )
+
+[node name="Board" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+shape = SubResource( 2 )
+
+[node name="NorthBorder" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 2.5, -49 )
+
+[node name="EastBorder" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 49, 2.5, 1 )
+
+[node name="SouthBorder" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 49 )
+
+[node name="WestBorder" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49, 2.5, -1 )
