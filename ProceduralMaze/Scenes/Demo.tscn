@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Demo.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Instances/Board.tscn" type="PackedScene" id=2]
@@ -7,10 +7,9 @@
 [ext_resource path="res://Assets/Instances/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Instances/EnergyMarker.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Instances/GameFin.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/Instances/Pause Screen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/Music & SoundEffects/renaissance_of_greed.ogg" type="AudioStream" id=9]
-[ext_resource path="res://default_env.tres" type="Environment" id=10]
-[ext_resource path="res://Assets/Instances/Sun.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Music & SoundEffects/renaissance_of_greed.ogg" type="AudioStream" id=8]
+[ext_resource path="res://default_env.tres" type="Environment" id=9]
+[ext_resource path="res://Assets/Instances/Sun.tscn" type="PackedScene" id=10]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
@@ -95,18 +94,16 @@ visible = false
 [node name="GameFin" parent="." instance=ExtResource( 7 )]
 visible = false
 
-[node name="Pause Screen" parent="." instance=ExtResource( 8 )]
-visible = false
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 8 )
+volume_db = -5.0
 pitch_scale = 0.8
 autoplay = true
 
 [node name="world" type="WorldEnvironment" parent="."]
-environment = ExtResource( 10 )
+environment = ExtResource( 9 )
 
-[node name="Sun" parent="." instance=ExtResource( 11 )]
+[node name="Sun" parent="." instance=ExtResource( 10 )]
 transform = Transform( -0.991789, 0.0910229, 0.0898331, 0.127686, 0.744178, 0.655664, -0.00717144, 0.66175, -0.74969, 5.08078, 23.7508, -18.1864 )
 [connection signal="maze_complete" from="RequestHandler" to="Player" method="_on_RequestHandler_maze_complete"]
 [connection signal="maze_complete" from="RequestHandler" to="." method="_on_RequestHandler_maze_complete"]
