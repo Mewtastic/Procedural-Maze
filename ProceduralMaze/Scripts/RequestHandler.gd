@@ -35,3 +35,7 @@ func _on_GameFin_home():
 func get_input():
 	if Input.is_action_just_pressed("switchcam"):
 		emit_signal("switch_cam")
+
+func _on_Player_home():
+	get_tree().paused = false
+	get_tree().change_scene("res://Scenes/3D title screen.tscn")

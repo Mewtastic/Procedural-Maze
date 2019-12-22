@@ -42,3 +42,7 @@ func _on_Player_green():
 	mark.translation = player.translation
 	mark.rotation_degrees = player.rotation_degrees
 	mark.visible = true
+
+func _on_Player_home():
+	get_tree().paused = false
+	get_tree().change_scene("res://Scenes/3D title screen.tscn")

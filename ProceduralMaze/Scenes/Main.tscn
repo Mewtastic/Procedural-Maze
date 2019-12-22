@@ -72,12 +72,13 @@ visible = false
 
 [node name="world" type="WorldEnvironment" parent="."]
 environment = ExtResource( 12 )
-[connection signal="maze_complete" from="RequestHandler" to="." method="_on_RequestHandler_maze_complete"]
-[connection signal="maze_complete" from="RequestHandler" to="Player" method="_on_RequestHandler_maze_complete"]
 [connection signal="maze_complete" from="RequestHandler" to="GameFin" method="_on_RequestHandler_maze_complete"]
+[connection signal="maze_complete" from="RequestHandler" to="Player" method="_on_RequestHandler_maze_complete"]
+[connection signal="maze_complete" from="RequestHandler" to="." method="_on_RequestHandler_maze_complete"]
 [connection signal="switch_cam" from="RequestHandler" to="Camera" method="_on_RequestHandler_switch_cam"]
 [connection signal="timeout" from="RequestHandler/Timer" to="RequestHandler" method="_on_Timer_timeout"]
 [connection signal="green" from="Player" to="." method="_on_Player_green"]
+[connection signal="home" from="Player" to="RequestHandler" method="_on_Player_home"]
 [connection signal="body_entered" from="PickupsContainer/Collect" to="RequestHandler" method="_on_Collect_body_entered"]
 [connection signal="body_entered" from="PickupsContainer/Collect2" to="RequestHandler" method="_on_Collect2_body_entered"]
 [connection signal="body_entered" from="PickupsContainer/Collect3" to="RequestHandler" method="_on_Collect3_body_entered"]

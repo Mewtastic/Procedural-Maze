@@ -20,7 +20,7 @@ export var width = 24 # width of map in cells
 export var depth = 24 # depth of map in cells
 # Total tiles is 576 (The more you know)
 
-const OFFSET = 12 # Width/Depth / 2
+const OFFSET = 12 # Width or Depth / 2
 
 onready var map = $GridMap
 

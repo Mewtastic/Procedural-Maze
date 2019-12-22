@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Instances/Flashlight.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/Montsrerrat_24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Fonts/Montsrerrat_16.tres" type="DynamicFont" id=4]
 
 [sub_resource type="SphereShape" id=1]
 radius = 1.5
@@ -50,4 +52,57 @@ transform = Transform( -0.0999391, 0.0104698, -1.5255e-10, 0, -1.31134e-08, -0.1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0
+
+[node name="Popup" type="Popup" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -31.0
+margin_right = 95.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+margin_right = 190.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Game Paused"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer"]
+margin_top = 35.0
+margin_right = 190.0
+margin_bottom = 62.0
+
+[node name="Resume" type="Button" parent="Popup/VBoxContainer/HBoxContainer"]
+margin_right = 81.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="Popup/VBoxContainer/HBoxContainer"]
+margin_left = 85.0
+margin_right = 190.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Main Menu"
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="Popup/VBoxContainer/HBoxContainer/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="Popup/VBoxContainer/HBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]

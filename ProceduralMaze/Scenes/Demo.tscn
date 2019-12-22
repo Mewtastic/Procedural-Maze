@@ -42,6 +42,10 @@ func _on_GameFin_retry():
 
 func _on_GameFin_home():
 	get_tree().change_scene(\"res://Scenes/3D title screen.tscn\")
+
+func _on_Player_home():
+	get_tree().paused = false
+	get_tree().change_scene(\"res://Scenes/3D title screen.tscn\")
 "
 
 [node name="Demo" type="Spatial"]
@@ -105,13 +109,14 @@ environment = ExtResource( 9 )
 
 [node name="Sun" parent="." instance=ExtResource( 10 )]
 transform = Transform( -0.991789, 0.0910229, 0.0898331, 0.127686, 0.744178, 0.655664, -0.00717144, 0.66175, -0.74969, 5.08078, 23.7508, -18.1864 )
-[connection signal="maze_complete" from="RequestHandler" to="Player" method="_on_RequestHandler_maze_complete"]
 [connection signal="maze_complete" from="RequestHandler" to="." method="_on_RequestHandler_maze_complete"]
+[connection signal="maze_complete" from="RequestHandler" to="Player" method="_on_RequestHandler_maze_complete"]
 [connection signal="maze_complete" from="RequestHandler" to="GameFin" method="_on_RequestHandler_maze_complete"]
 [connection signal="timeout" from="RequestHandler/Timer" to="RequestHandler" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Pickups container/Collect" to="RequestHandler" method="_on_Collect_body_entered"]
 [connection signal="body_entered" from="Pickups container/Collect2" to="RequestHandler" method="_on_Collect2_body_entered"]
 [connection signal="body_entered" from="Pickups container/Collect3" to="RequestHandler" method="_on_Collect3_body_entered"]
 [connection signal="green" from="Player" to="." method="_on_Player_green"]
+[connection signal="home" from="Player" to="RequestHandler" method="_on_Player_home"]
 [connection signal="home" from="GameFin" to="RequestHandler" method="_on_GameFin_home"]
 [connection signal="retry" from="GameFin" to="RequestHandler" method="_on_GameFin_retry"]
