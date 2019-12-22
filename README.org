@@ -3,4 +3,4 @@ A maze that's different every time you play!
 
 
 * Note
-  The tutorial needs to be updated and remade, player controls need to be refined, player camera needs fixing for upward movement, and pause screen in place, but not in code yet.
+  The tutorial needs to be updated and remade and player camera needs fixing for upward movement.
