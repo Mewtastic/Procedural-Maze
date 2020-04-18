@@ -1,5 +1,5 @@
 extends Area
-# StarCube animations code.
+# StarCube animations code
 export var rise = .03
 export var spin = -.5
 var collected = false

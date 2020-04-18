@@ -14,7 +14,7 @@ const S = 4
 const W = 8
 
 var cell_walls = {Vector3(0,0,-1): N, Vector3(1,0,0): E,
-                  Vector3(0,0,1): S, Vector3(-1,0,0): W}
+				  Vector3(0,0,1): S, Vector3(-1,0,0): W}
 
 export var width = 12 # width of map in cells
 export var depth = 12 # depth of map in cells
