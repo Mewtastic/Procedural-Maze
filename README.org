@@ -1,6 +1,9 @@
 * Procedural Maze
 A maze that's different every time you play!
 
-
-* Note
-  The tutorial needs to be updated and remade and player camera needs fixing for upward movement.
+* TODO
+  The tutorial needs to be updated/remade 
+  Player camera needs fixing for upward movement.
+  Switch out music for better music.
+  Add textures to walls and floors?
+  Add keyboard and brightness settings so other people can actually play it.
