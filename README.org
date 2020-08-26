@@ -1,7 +1,7 @@
 * Procedural Maze
 A maze that's different every time you play!
 
-* TODO
+* Todo
 ** The tutorial needs to be updated/remade 
 ** Player camera needs fixing for upward movement.
 ** Switch out music for better music.
