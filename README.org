@@ -2,8 +2,8 @@
 A maze that's different every time you play!
 
 * TODO
-  The tutorial needs to be updated/remade 
-  Player camera needs fixing for upward movement.
-  Switch out music for better music.
-  Add textures to walls and floors?
-  Add keyboard and brightness settings so other people can actually play it.
+  # The tutorial needs to be updated/remade 
+  # Player camera needs fixing for upward movement.
+  # Switch out music for better music.
+  # Add textures to walls and floors?
+  # Add keyboard and brightness settings so other people can actually play it.
